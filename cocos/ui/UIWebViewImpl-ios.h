@@ -28,7 +28,7 @@
 
 #include <iosfwd>
 
-@class UIWebViewWrapper;
+class UIWebViewWrapper;
 
 namespace cocos2d {
     

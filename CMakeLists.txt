@@ -46,7 +46,9 @@ set(COCOS2D_X_VERSION 3.13)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake/Modules/")
 set(COCOS_EXTERNAL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external)
 # architecture
-if (CMAKE_SIZEOF_VOID_P EQUAL 8)
+if (IOS_PLATFORM)
+  set(ARCH_DIR "")
+elseif (CMAKE_SIZEOF_VOID_P EQUAL 8)
   set(ARCH_DIR "64-bit")
 elseif (CMAKE_SIZEOF_VOID_P EQUAL 4)
   set(ARCH_DIR "32-bit")
@@ -65,7 +67,6 @@ if (NOT CMAKE_BUILD_TYPE)
 endif(NOT CMAKE_BUILD_TYPE)
 
 include(CocosBuildHelpers)
-
 message(${BUILDING_STRING})
 
 # SelectModule() is a macro to select building modules

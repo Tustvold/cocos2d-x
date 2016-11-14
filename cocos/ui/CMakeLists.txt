@@ -7,6 +7,10 @@ if(WINDOWS)
   set(COCOS_UI_SPECIFIC_SRC
       ui/UIEditBox/UIEditBoxImpl-win32.cpp
       )
+elseif(IOS)
+  set(COCOS_UI_SPECIFIC_SRC
+      
+      )
 elseif(MACOSX)
   set(COCOS_UI_SPECIFIC_SRC
       ui/UIEditBox/UIEditBoxImpl-mac.mm

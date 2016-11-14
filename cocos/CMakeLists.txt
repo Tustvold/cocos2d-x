@@ -110,6 +110,26 @@ elseif(LINUX)
   foreach(_pkg OPENGL GLEW GLFW3 FMOD FONTCONFIG THREADS GTK3)
     cocos_use_pkg(cocos2dInternal ${_pkg})
   endforeach()
+elseif(IOS)
+ FIND_LIBRARY(COREGRAPHICS_LIBRARY CoreGraphics)
+ FIND_LIBRARY(UIKIT_LIBRARY UIKit)
+ FIND_LIBRARY(COREMOTION_LIBRARY CoreMotion)
+ FIND_LIBRARY(OPENGLES_LIBRARY OpenGLES)
+ FIND_LIBRARY(OPENAL_LIBRARY OpenAL)
+ FIND_LIBRARY(FOUNDATION_LIBRARY Foundation)
+ FIND_LIBRARY(AUDIOTOOLBOX_LIBRARY AudioToolbox)
+ FIND_LIBRARY(QUARTZCORE_LIBRARY QuartzCore)
+
+  set(PLATFORM_SPECIFIC_LIBS
+    ${COREGRAPHICS_LIBRARY}
+    ${UIKIT_LIBRARY}
+    ${COREMOTION_LIBRARY}
+    ${OPENGLES_LIBRARY}
+    ${OPENAL_LIBRARY}
+    ${FOUNDATION_LIBRARY}
+    ${AUDIOTOOLBOX_LIBRARY}
+    ${QUARTZCORE_LIBRARY}
+  )
 elseif(MACOSX OR APPLE)
   cocos_use_pkg(cocos2dInternal GLFW3)
 
@@ -180,6 +200,10 @@ if(USE_RECAST)
 endif()
 
 ADD_LIBRARY(cocos2d cc_dummy.c)
+
+if (IOS AND CMAKE_GENERATOR STREQUAL Xcode)
+  set_xcode_property(cocos2dInternal GCC_PREFIX_HEADER cocos2d/cocos/platform/ios/cocos2d-prefix.pch)
+endif()
 
 if(ANDROID)
   target_link_libraries(cocos2d -Wl,-whole-archive cocos2dxandroid_static -Wl,-no-whole-archive)

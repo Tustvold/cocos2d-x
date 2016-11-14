@@ -35,6 +35,25 @@ set(COCOS_PLATFORM_SPECIFIC_SRC
   platform/desktop/CCGLViewImpl-desktop.cpp
 )
 
+elseif(IOS)
+
+set(COCOS_PLATFORM_SPECIFIC_SRC
+  platform/ios/CCApplication-ios.mm
+  platform/ios/CCCommon-ios.mm
+  platform/ios/CCDevice-ios.mm
+  platform/ios/CCDirectorCaller-ios.mm
+  platform/ios/CCEAGLView-ios.mm
+  platform/ios/CCES2Renderer-ios.m
+  platform/ios/CCGLViewImpl-ios.mm
+  platform/ios/CCImage-ios.mm
+  platform/ios/cocos2d-prefix.pch
+  platform/apple/CCLock-apple.cpp
+  platform/apple/CCFileUtils-apple.mm
+  platform/apple/CCThread-apple.mm
+  platform/apple/CCDevice-apple.mm
+)
+
+
 elseif(MACOSX OR APPLE)
 
 set(COCOS_PLATFORM_SPECIFIC_SRC
